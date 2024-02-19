@@ -7,12 +7,16 @@
 #include "woods.inc"
 #include "pprocess.inc"
 
-#declare skin_color = rgb <1, 0.8, 0.6>;
-#declare shorts_color = rgb <1, 1, 0.0>;
-#declare mat_texture = EMBWood1;
+
+#declare mat_texture = <<MAT_TEXTURE>>;
 #declare background_texture = Jade;
 #declare camera_location = <<CAMERA_LOCATION>>;
 #declare depth_output = <<DEPTH_OUTPUT>>;
+#declare head_size = <<HEAD_SIZE>>;
+#declare skin_color = <<SKIN_COLOR>>;
+#declare shorts_color = <<SHORTS_COLOR>>;
+#declare right_arm_end = <<RIGHT_ARM_END>>;
+#declare left_arm_end = <<LEFT_ARM_END>>;
 
 #version unofficial MegaPov 1.21;
 
@@ -42,7 +46,7 @@ plane {
 
 // Head (Sphere)
 sphere {
-  <0, 3, 0>, 0.7 // Center and radius
+  <0, 3, 0>, head_size // Center and radius
   texture {
     pigment { color skin_color } // Skin color
   }
@@ -67,7 +71,7 @@ box {
 
 // Right Arm (Cylinder)
 cylinder {
-  <0.5, 2, 0>, <1.5, 2, 0>, 0.16 // Base, cap, and radius
+  <0.5, 2, 0>, right_arm_end, 0.16 // Base, cap, and radius
   texture {
     pigment { color rgb skin_color } // Skin color
   }
@@ -75,7 +79,7 @@ cylinder {
 
 // Left Arm (Cylinder)
 cylinder {
-  <-0.5, 2, 0>, <-1.2, 2.6, 0.1>, 0.16 // Base, cap, and radius
+  <-0.5, 2, 0>, left_arm_end, 0.16 // Base, cap, and radius
   texture {
     pigment { color rgb skin_color } // Skin color
   }
