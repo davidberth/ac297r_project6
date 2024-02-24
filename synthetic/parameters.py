@@ -2,29 +2,27 @@
 generator. Parameters are sampled from various random distributions"""
 
 import numpy as np
-from numpy.random import randn
+from numpy.random import randn, uniform
 import template
 
 
 class Parameters:
     def __init__(self):
         # direct parameters
-        self.head_size = self.normal(0.7, 0.1)
+        self.head_size = self.normal(0.7, 0.05)
         self.skin_color = self.color((1, 0.8, 0.6), (0.1, 0.1, 0.1))
         self.shorts_color = self.color((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         self.mat_texture = self.choose(
             [
-                "Dark_Wood",
+                "Blood_Sky",
                 "New_Brass",
-                "White_Wood",
-                "Tom_Wood",
+                "Brown_Agate",
                 "Aluminum",
-                "EBMWood1",
                 "SilverFinish",
             ]
         )
         # meta parameters
-        self.camera_distance = self.normal(9.0, 1.0)
+        self.camera_distance = self.normal(9.0, 0.2)
         self.rotation_adj = self.normal(0.0, 4.0)
 
         self.right_arm_angle_xy = self.normal(0.0, 10.0)
@@ -36,9 +34,22 @@ class Parameters:
         self.right_leg_angle_xy = self.normal(0.0, 10.0)
         self.right_leg_angle_z = self.normal(0.0, 5.0)
         self.left_leg_angle_z = self.normal(0.0, 5.0)
+        self.body_height = self.normal(2.5, 0.25)
+        self.head_height = self.body_height + self.head_size * 0.75
+
+        self.light1 = self.unif(0.0, 1.0)
+        self.light2 = self.unif(0.0, 1.0)
+        self.backcolor1 = self.unif(0.0, 1.0)
+        self.backcolor2 = self.unif(0.0, 1.0)
+        self.backcolor3 = self.unif(0.0, 1.0)
+
+        self.child_height = self.body_height + self.head_size * 1.75
 
     def normal(self, mu, sigma):
         return randn() * sigma + mu
+
+    def unif(self, a, b):
+        return uniform(a, b)
 
     def color(self, center, sigma):
         cent = np.array(center)
@@ -50,6 +61,7 @@ class Parameters:
     def implement_templates(self, script):
         params = self.__dict__
         for key, value in params.items():
+            print(key, value)
             if isinstance(value, np.ndarray):
                 script = template.process_template(script, key, list(value))
             else:
