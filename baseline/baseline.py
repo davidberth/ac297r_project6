@@ -46,9 +46,11 @@ def baseline():
     mae = np.sum(np.abs(y_test - y_pred)) / len(y_test)
     pc = np.sum( np.abs(y_test - y_pred) < 2) / len(y_test)
 
+    perc = np.abs(100 - 100 * y_pred / y_test)
+    mpe = np.mean(perc)
+    print (mpe)
 
-
-    print (mae, pc)
+    print (mae, pc, mpe)
 
 if __name__ == '__main__':
     fire.Fire(baseline)

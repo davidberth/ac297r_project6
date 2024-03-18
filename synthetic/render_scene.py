@@ -22,6 +22,7 @@ def do_scene():
 
     for sn in range(1):
         params = parameters.Parameters()
+        # for frame, angle in enumerate([90]):
         for frame, angle in enumerate(range(30, 151, 30)):
             params_per = parameters.Parameters()
             rang = np.deg2rad(float(angle))

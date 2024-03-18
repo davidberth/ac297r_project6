@@ -8,24 +8,24 @@
 #include "pprocess.inc"
 
 
-#declare mat_texture = <<MAT_TEXTURE>>;
-#declare camera_location = <<CAMERA_LOCATION>>;
-#declare depth_output = <<DEPTH_OUTPUT>>;
-#declare head_size = <<HEAD_SIZE>>;
-#declare skin_color = <<SKIN_COLOR>>;
-#declare shorts_color = <<SHORTS_COLOR>>;
-#declare right_arm_end = <<RIGHT_ARM_END>>;
-#declare left_arm_end = <<LEFT_ARM_END>>;
-#declare left_leg_end = <<LEFT_LEG_END>>;
-#declare right_leg_end = <<RIGHT_LEG_END>>;
-#declare body_height = <<BODY_HEIGHT>>;
-#declare light1 = <<LIGHT1>>;
-#declare light2 = <<LIGHT2>>;
-#declare backcolor1 = <<BACKCOLOR1>>;
-#declare backcolor2 = <<BACKCOLOR2>>;
-#declare backcolor3 = <<BACKCOLOR3>>;
+#declare mat_texture = New_Brass;
+#declare camera_location = <-7.794617273097908, 1.3, -4.500224380853183>;
+#declare depth_output = "output/depth000000_150.png";
+#declare head_size = 0.6709047960128699;
+#declare skin_color = <1.0, 0.8640579327411996, 0.7023377400213866>;
+#declare shorts_color = <0.6029825864111154, 0.0, 0.5895677771654216>;
+#declare right_arm_end = <1.46403755554068, 2.3264874208395634, 0.0>;
+#declare left_arm_end = <-1.4950989046118015, 1.8788419815753366, 0.0>;
+#declare left_leg_end = <-0.09494001532290192, 0.021250592498657905, 0.0>;
+#declare right_leg_end = <0.21528609413101168, 0.003594683799599485, 0.0>;
+#declare body_height = 2.7734636895229734;
+#declare light1 = 0.8308269572254565;
+#declare light2 = 0.16307964360135874;
+#declare backcolor1 = 0.35968042774622333;
+#declare backcolor2 = 0.3849859709897535;
+#declare backcolor3 = 0.6991520927539552;
 #declare background_texture = pigment {color rgb <backcolor1, backcolor2, backcolor3>};
-#declare head_height = <<HEAD_HEIGHT>>;
+#declare head_height = 3.276642286532626;
 
 #version unofficial MegaPov 1.21;
 
