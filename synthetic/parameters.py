@@ -22,7 +22,7 @@ class Parameters:
             ]
         )
         # meta parameters
-        self.camera_distance = self.normal(9.0, 0.2)
+        self.camera_distance = self.normal(8.0, 0.2)
         self.rotation_adj = self.normal(0.0, 4.0)
 
         self.right_arm_angle_xy = self.normal(0.0, 10.0)
@@ -34,7 +34,7 @@ class Parameters:
         self.right_leg_angle_xy = self.normal(0.0, 10.0)
         self.right_leg_angle_z = self.normal(0.0, 5.0)
         self.left_leg_angle_z = self.normal(0.0, 5.0)
-        self.body_height = self.normal(2.5, 0.25)
+        self.body_height = self.normal(2.48, 0.16)
         self.head_height = self.body_height + self.head_size * 0.75
 
         self.light1 = self.unif(0.0, 1.0)

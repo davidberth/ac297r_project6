@@ -38,14 +38,15 @@ global_settings{
 camera {
   location camera_location
   look_at  <0, 1.3,  0>
+  angle 80
 }
 
 // Lights
-light_source { <0, 10, -10> color rgb <light1, light1, light1> }
+ light_source { <0, 10, -10> color rgb <light1, light1, light1> }
  light_source { <5, 10, 5> color rgb <light2, light2, light2> }
  light_source {
-    <0, 6, -6>
-    color Yellow
+    <0.5, 6, -3.6>
+    color White
     spotlight
     radius 3
     falloff 20
@@ -121,6 +122,22 @@ cylinder {
   }
 }
 
+sphere {
+ right_arm_end, 0.16
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+  }
+
+ sphere {
+ right_arm_end, 0.16
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+ }
+
+
+
 // Left Arm (Cylinder)
 cylinder {
   <-0.5, 2, 0>, left_arm_end, 0.16 // Base, cap, and radius
@@ -128,6 +145,14 @@ cylinder {
     pigment { color rgb skin_color } // Skin color
   }
 }
+
+ sphere {
+ left_arm_end, 0.16
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+ }
+
 
 // Right Leg (Cylinder) Shorts
 cylinder {
@@ -144,6 +169,13 @@ cylinder {
     pigment { color skin_color } // Skin color
   }
 }
+
+ sphere {
+ right_leg_end, 0.22
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+ }
 
 
 // Left Leg (Cylinder) Shorts
@@ -162,6 +194,13 @@ cylinder {
   }
 }
 
+ sphere {
+ left_leg_end, 0.22
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+ }
+
 // Mat
 box {
   <-3, -2, 0.31>, <3, 5, 0.5> // Corners
@@ -170,4 +209,5 @@ box {
     scale 0.2  // Adjust the scale to control the size of the checkers
   }
 }
+
 
