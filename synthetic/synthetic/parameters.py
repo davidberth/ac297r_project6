@@ -14,10 +14,6 @@ class Parameters:
         self.shorts_color = self.color((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         self.mat_texture = self.choose(
             [
-                "Blood_Sky",
-                "New_Brass",
-                "Brown_Agate",
-                "Aluminum",
                 "SilverFinish",
             ]
         )
@@ -37,11 +33,15 @@ class Parameters:
         self.body_height = self.normal(2.48, 0.16)
         self.head_height = self.body_height + self.head_size * 0.75
 
-        self.light1 = self.unif(0.0, 1.0)
-        self.light2 = self.unif(0.0, 1.0)
+        self.light1 = self.unif(0.5, 1.0)
+        self.light2 = self.unif(0.5, 1.0)
         self.backcolor1 = self.unif(0.0, 1.0)
         self.backcolor2 = self.unif(0.0, 1.0)
         self.backcolor3 = self.unif(0.0, 1.0)
+
+        self.haircolor1 = self.unif(0.0, 1.0)
+        self.haircolor2 = self.unif(0.0, 1.0)
+        self.haircolor3 = self.unif(0.0, 1.0)
 
         self.child_height = self.body_height + self.head_size * 1.75
 

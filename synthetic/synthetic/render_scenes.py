@@ -10,12 +10,13 @@ import os
 import numpy as np
 
 
-def render_scenes(num_children: int, clear_dir: bool = False):
+def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
     """Render a scene of an infant or toddler on a mat
     from multiple view angles, and then renders depth maps
 
     Args:
         num_children (int): Number of children to render
+        seed (int): The starting random seed to use for reproducibility
         clear_dir (bool): If true, clear the output directory before rendering
     Returns:
     """
@@ -31,13 +32,17 @@ def render_scenes(num_children: int, clear_dir: bool = False):
     template_file = constants.template_file
     scene_file = constants.output_scene
     hair_strand = """cylinder {
-    <0, head_height, 0>, $, 0.012 
+    <0, head_height, 0>, $, @
     texture {
-    pigment { color Yellow } // Skin color
+    pigment { color rgb< haircolor1 , haircolor2 , haircolor3 > } // Skin color
     }
     }"""
 
     for sn in range(num_children):
+
+        if seed >= 0:
+            np.random.seed(seed)
+            seed += 1
         params = parameters.Parameters()
         # for frame, angle in enumerate([90]):
         for frame, angle in enumerate(range(30, 151, 30)):
@@ -52,13 +57,15 @@ def render_scenes(num_children: int, clear_dir: bool = False):
 
             angle = str(angle).zfill(3)
             sl = str(sn).zfill(6)
-            output_file = f"output\scene{sl}_{angle}.png"
+            output_file = f"output\child_{sl}_rgb_{angle}.png"
             scene_str = scene.build_scene(template_file)
             scene_str = template.process_template(
                 scene_str, "camera_location", camera_loc
             )
             scene_str = template.process_template(
-                scene_str, "depth_output", rf'"output/depth{sl}_{angle}.png"'
+                scene_str,
+                "depth_output",
+                rf'"output/child_{sl}_dpt_{angle}.png"',
             )
 
             right_arm_loc = np.array((0.0, 2.0, 0))
@@ -109,7 +116,7 @@ def render_scenes(num_children: int, clear_dir: bool = False):
             scene_str = params.implement_templates(scene_str)
 
             # add the hair
-            for i in range(1900):
+            for i in range(np.random.randint(250, 4000)):
 
                 theta = np.random.uniform(
                     0, np.pi / 3
@@ -117,12 +124,14 @@ def render_scenes(num_children: int, clear_dir: bool = False):
                 phi = np.random.uniform(
                     0, 2 * np.pi
                 )  # Azimuthal angle, full range
-                radius = np.random.uniform(0.12, 0.18) + params.head_size
+                radius = np.random.uniform(0.10, 0.18) + params.head_size
+                hair_width = np.random.normal(loc=0.016, scale=0.003)
                 # Convert spherical coordinates to Cartesian coordinates for plotting
                 x = radius * np.sin(theta) * np.cos(phi)
                 z = radius * np.sin(theta) * np.sin(phi)
                 y = radius * np.cos(theta) + params.head_height
                 hf = hair_strand.replace("$", f"<{x},{y},{z}>")
+                hf = hf.replace("@", str(hair_width))
                 scene_str = scene_str + "\n" + hf + "\n"
                 scene.save_scene(scene_file, scene_str)
 
@@ -134,8 +143,9 @@ def render_scenes(num_children: int, clear_dir: bool = False):
             )
 
             child_height = params.child_height
-            with open(f"output/scene{sl}_{angle}.txt", "wt") as f:
-                f.write(f"child height (cm) : {child_height * 20.0} \n")
+            with open(f"output/child{sl}_lbl_{angle}.txt", "wt") as f:
+                f.write(f"child height (cm): {child_height * 20.0} \n")
+                f.write(f"seed: {seed}")
                 f.write("\n")
                 pm = params.__dict__
                 for key, value in pm.items():
@@ -189,9 +199,9 @@ def render_scenes(num_children: int, clear_dir: bool = False):
 
                 f.write("\n")
 
-            sf = f"output\scene{sl}_{angle}"
+            sf = f"output\child_{sl}_rgb_{angle}"
             keypoint.apply_to_image(sf, 7)
-            sf = f"output\depth{sl}_{angle}"
+            sf = f"output\child_{sl}_dpt_{angle}"
             keypoint.apply_to_image(sf, 7)
             keypoint.keypoints = []
 
