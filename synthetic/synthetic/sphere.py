@@ -1,4 +1,3 @@
-import color
 import texture
 import vector
 

@@ -15,10 +15,19 @@ def set_camera(camera, look_at):
     klook_at = look_at
 
 
-def write(file, label, coord):
+def write(file, label: str, coord: tuple):
+    """Project and write a given keypoint to a file
+
+    Args:
+        file: the open file
+        label: the label of the keypoint
+        coord: the coordinates of the keypoint
+    """
     global kcamera_pos, klook_at
     file.write(f"keypoint_{label}_3d: {coord}\n")
-    coord2d = project_to_2d(kcamera_pos, klook_at, (0, 1, 0), coord, 65, 1.2, 0.1, 10)
+    coord2d = project_to_2d(
+        kcamera_pos, klook_at, (0, 1, 0), coord, 65, 1.2, 0.1, 10
+    )
     file.write(f"keypoint_{label}_2d: {coord2d}\n")
     keypoints.append(coord2d)
 
@@ -29,18 +38,18 @@ def project_to_2d(
     """
     Projects a 3D point to 2D using pyrr for matrix operations.
 
-    Parameters:
-    - camera_pos: Camera position as a list or numpy array [x, y, z].
-    - look_at: The point the camera is looking at [x, y, z].
-    - up_vector: The up direction for the camera [x, y, z].
-    - point_3d: The 3D point to project [x, y, z].
-    - fov: Field of view in degrees.
-    - aspect_ratio: The aspect ratio of the image (width / height).
-    - near: Near clipping plane distance.
-    - far: Far clipping plane distance.
+    Args:
+        camera_pos: Camera position as a list or numpy array [x, y, z].
+        look_at: The point the camera is looking at [x, y, z].
+        up_vector: The up direction for the camera [x, y, z].
+        point_3d: The 3D point to project [x, y, z].
+        fov: Field of view in degrees.
+        aspect_ratio: The aspect ratio of the image (width / height).
+        near: Near clipping plane distance.
+        far: Far clipping plane distance.
 
     Returns:
-    - A numpy array [x, y] representing the projected 2D point in normalized device coordinates.
+        A numpy array [x, y] representing the projected 2D point in normalized device coordinates.
     """
     # Create view and projection matrices
     view_matrix = Matrix44.look_at(
@@ -62,7 +71,16 @@ def project_to_2d(
     return tpoint[:2]
 
 
-def apply_to_image(img_path, square_size):
+def apply_to_image(img_path: str, square_size: int):
+    """Renders a square to an image. This is a generic function
+    but currently is used for rendering keypoints
+
+    Args:
+        img_path (str): Path to the image to render
+        square_size (int): Size of the square to render
+    Returns:
+        Saves a copy of the rendered image with keypoints rendered
+    """
     image = Image.open(img_path + ".png")
     draw = ImageDraw.Draw(image)
 

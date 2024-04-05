@@ -61,7 +61,6 @@ class Parameters:
     def implement_templates(self, script):
         params = self.__dict__
         for key, value in params.items():
-            print(key, value)
             if isinstance(value, np.ndarray):
                 script = template.process_template(script, key, list(value))
             else:
