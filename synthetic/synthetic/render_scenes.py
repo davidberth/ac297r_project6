@@ -5,6 +5,8 @@ import options
 import template
 import parameters
 import keypoint
+import face
+import post_process
 
 import os
 import numpy as np
@@ -44,7 +46,16 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
             np.random.seed(seed)
             seed += 1
         params = parameters.Parameters()
-        # for frame, angle in enumerate([90]):
+
+        # generate the face texture
+        face.render_face(
+            *params.skin_color, params.eye_color_index, params.smile_factor
+        )
+
+        # define the mat texture
+        mat_index = params.mat_texture
+        mat_texture = f'"textures/mat/461223{mat_index:03d}.jpg"'
+
         for frame, angle in enumerate(range(30, 151, 30)):
             params_per = parameters.Parameters()
             rang = np.deg2rad(float(angle))
@@ -59,6 +70,11 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
             sl = str(sn).zfill(6)
             output_file = f"output\child_{sl}_rgb_{angle}.png"
             scene_str = scene.build_scene(template_file)
+
+            scene_str = template.process_template(
+                scene_str, "mat_tex", mat_texture
+            )
+
             scene_str = template.process_template(
                 scene_str, "camera_location", camera_loc
             )
@@ -159,19 +175,12 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
                     f,
                     "head_top",
                     (0, params.head_height + params.head_size, 0),
+                    0,
                 )
 
-                keypoint.write(
-                    f,
-                    "right_hand",
-                    right_arm_loc,
-                )
+                keypoint.write(f, "right_hand", right_arm_loc, 1)
 
-                keypoint.write(
-                    f,
-                    "left_hand",
-                    left_arm_loc,
-                )
+                keypoint.write(f, "left_hand", left_arm_loc, 1)
 
                 keypoint.write(
                     f,
@@ -181,27 +190,35 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
                         right_leg_loc[1] - 0.16,
                         right_leg_loc[2],
                     ),
+                    2,
                 )
 
                 keypoint.write(
                     f,
                     "left_foot",
                     (left_leg_loc[0], left_leg_loc[1] - 0.16, left_leg_loc[2]),
+                    2,
                 )
 
                 keypoint.write(
                     f,
                     "neck",
                     (0, params.head_height - params.head_size, -0.31),
+                    0,
                 )
 
-                keypoint.write(f, "hip", (0.0, 1.0, -0.31))
+                keypoint.write(f, "hip", (0.0, 1.0, -0.31), 0)
 
                 f.write("\n")
 
+            # apply the postprocessing
             sf = f"output\child_{sl}_rgb_{angle}"
+            # post_process.apply_noise(sf, 15.0)
+            # post_process.apply_box(sf)
             keypoint.apply_to_image(sf, 7)
             sf = f"output\child_{sl}_dpt_{angle}"
+            # post_process.apply_noise(sf, 15.0)
+            # post_process.apply_box(sf)
             keypoint.apply_to_image(sf, 7)
             keypoint.keypoints = []
 

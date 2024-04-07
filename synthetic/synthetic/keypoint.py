@@ -15,13 +15,14 @@ def set_camera(camera, look_at):
     klook_at = look_at
 
 
-def write(file, label: str, coord: tuple):
+def write(file, label: str, coord: tuple, ktype: int):
     """Project and write a given keypoint to a file
 
     Args:
         file: the open file
         label: the label of the keypoint
         coord: the coordinates of the keypoint
+        ktype: the keypoint type (body, hands, feet)
     """
     global kcamera_pos, klook_at
     file.write(f"keypoint_{label}_3d: {coord}\n")
@@ -29,7 +30,7 @@ def write(file, label: str, coord: tuple):
         kcamera_pos, klook_at, (0, 1, 0), coord, 65, 1.2, 0.1, 10
     )
     file.write(f"keypoint_{label}_2d: {coord2d}\n")
-    keypoints.append(coord2d)
+    keypoints.append((coord2d, ktype))
 
 
 def project_to_2d(
@@ -83,11 +84,12 @@ def apply_to_image(img_path: str, square_size: int):
     """
     image = Image.open(img_path + ".png")
     draw = ImageDraw.Draw(image)
+    color = ["red", "blue", "yellow"]
 
     img_width, img_height = image.size
 
     # Convert normalized coordinates to pixel coordinates and draw squares
-    for coord in keypoints:
+    for coord, kt in keypoints:
         x_pixel = int(coord[0] * img_width)
         y_pixel = int(coord[1] * img_height)
 
@@ -98,7 +100,7 @@ def apply_to_image(img_path: str, square_size: int):
         bottom = y_pixel + square_size // 2
 
         # Draw the square
-        draw.rectangle([left, top, right, bottom], outline="red", width=2)
+        draw.rectangle([left, top, right, bottom], outline=color[kt], width=2)
 
     # Save the modified image
     image.save(img_path + "_kp.png")

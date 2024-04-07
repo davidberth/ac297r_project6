@@ -12,11 +12,8 @@ class Parameters:
         self.head_size = self.normal(0.7, 0.05)
         self.skin_color = self.color((1, 0.8, 0.6), (0.1, 0.1, 0.1))
         self.shorts_color = self.color((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-        self.mat_texture = self.choose(
-            [
-                "SilverFinish",
-            ]
-        )
+        self.mat_texture = self.integer(101, 200)
+
         # meta parameters
         self.camera_distance = self.normal(8.0, 0.2)
         self.rotation_adj = self.normal(0.0, 4.0)
@@ -43,6 +40,12 @@ class Parameters:
         self.haircolor2 = self.unif(0.0, 1.0)
         self.haircolor3 = self.unif(0.0, 1.0)
 
+        self.eye_color_index = self.integer(0, 9)
+        self.smile_factor = self.unif(-40.0, 100.0)
+
+        self.mat_rotate_y = self.unif(-2.0, 2.0)
+        self.mat_rotate_z = self.unif(-3.0, 3.0)
+
         self.child_height = self.body_height + self.head_size * 1.75
 
     def normal(self, mu, sigma):
@@ -50,6 +53,9 @@ class Parameters:
 
     def unif(self, a, b):
         return uniform(a, b)
+
+    def integer(self, a, b):
+        return np.random.randint(a, b)
 
     def color(self, center, sigma):
         cent = np.array(center)
