@@ -1,0 +1,34 @@
+union {
+
+// Head (Sphere)
+sphere {
+  <0, 0, 0>, head_size
+
+
+  texture {
+    pigment {
+      image_map {
+        png face_texture
+        map_type 1 // Spherical mapping
+        once // Use the image once (no tiling)
+        interpolate 2 // Smooth interpolation
+      }
+
+    }
+    rotate <0, -90, 0>
+
+  }
+  finish {
+  ambient 0.1
+  diffuse 0.95
+  specular 0.25
+  roughness 0.04
+  reflection {
+    0.05
+    fresnel 1
+  }
+    }
+  translate <0, head_height, 0>
+}
+
+<<<HAIR>>>

@@ -1,0 +1,45 @@
+// Body (Box)
+
+#declare RoundRadius = 0.1;
+#declare BodyLeft = -0.47;
+#declare BodyRight = 0.53;
+#declare BodyBottom = 1.4;
+#declare BodyTop = body_height;
+#declare BodyZmin = -0.3;
+#declare BodyZmax = 0.3;
+
+object{
+Round_Box_Union (
+    <BodyLeft, BodyBottom, BodyZmin>, <BodyRight, BodyTop, BodyZmax>, 0.3)
+
+
+      texture {
+    pigment { color skin_color } // Skin color
+  }
+       finish {
+      ambient 0.1
+      diffuse 0.65
+      specular 0.25
+      roughness 0.02
+      reflection {
+        0.05
+        fresnel 1
+      }}
+  }
+
+
+
+
+
+// shorts part
+object {
+Round_Box_Union (
+  <-0.51, 1.0, -0.31>, <0.51, 1.63, 0.31>, 0.14) // Corners
+  texture {
+    pigment { color shorts_color } // Shorts color
+  }
+   normal {
+        bumps 0.5  // Alternatively, use 'granite' or 'bozo' for different effects
+        scale 0.1  // Adjust scale depending on the desired roughness
+    }
+}

@@ -1,0 +1,83 @@
+// Right Arm (Cylinder)
+cylinder {
+  <0.45, 2.15, 0>, right_arm_end, 0.16 // Base, cap, and radius
+  texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+}
+
+sphere {
+ right_arm_end, 0.12
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+  }
+
+ sphere {
+ right_arm_end, 0.16
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+ }
+
+
+
+// Left Arm (Cylinder)
+cylinder {
+  <-0.45, 2.15, 0>, left_arm_end, 0.16 // Base, cap, and radius
+  texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+}
+
+ sphere {
+ left_arm_end, 0.16
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+ }

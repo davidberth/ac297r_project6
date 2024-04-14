@@ -9,13 +9,13 @@ import template
 class Parameters:
     def __init__(self):
         # direct parameters
-        self.head_size = self.normal(0.7, 0.05)
+        self.head_size = self.normal(0.65, 0.05)
         self.skin_color = self.color((1, 0.8, 0.6), (0.1, 0.1, 0.1))
         self.shorts_color = self.color((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         self.mat_texture = self.integer(101, 200)
 
         # meta parameters
-        self.camera_distance = self.normal(8.0, 0.2)
+        self.camera_distance = self.normal(6.2, 0.2)
         self.rotation_adj = self.normal(0.0, 4.0)
 
         self.right_arm_angle_xy = self.normal(0.0, 10.0)
@@ -30,8 +30,14 @@ class Parameters:
         self.body_height = self.normal(2.48, 0.16)
         self.head_height = self.body_height + self.head_size * 0.75
 
-        self.light1 = self.unif(0.5, 1.0)
-        self.light2 = self.unif(0.5, 1.0)
+        self.light_x = self.unif(-5.0, 5.0)
+        self.light_y = self.unif(-5.0, 5.0)
+
+        self.light1 = self.unif(0.3, 1.0)
+        self.light2 = self.unif(0.3, 1.0)
+        self.light3 = self.unif(0.2, 1.0)
+        self.light4 = self.unif(0.3, 1.0)
+
         self.backcolor1 = self.unif(0.0, 1.0)
         self.backcolor2 = self.unif(0.0, 1.0)
         self.backcolor3 = self.unif(0.0, 1.0)
@@ -45,6 +51,9 @@ class Parameters:
 
         self.mat_rotate_y = self.unif(-2.0, 2.0)
         self.mat_rotate_z = self.unif(-3.0, 3.0)
+
+        self.child_rotate_y = self.normal(0.0, 4.0)
+        self.child_rotate_z = self.normal(0.0, 4.0)
 
         self.child_height = self.body_height + self.head_size * 1.75
 

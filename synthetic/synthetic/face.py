@@ -40,7 +40,7 @@ def render_face(red, green, blue, eye_color_index, smile_factor):
 
     for _ in range(2):
         # outer ellipse
-        ctx.set_source_rgb(0.6, 0.6, 0.6)  # black
+        ctx.set_source_rgb(0.9, 0.9, 0.9)
         ctx.save()
         ctx.translate(eye_x, eye_y)
         ctx.scale(1, 1.3)  # ellipse is scale of circle in y direction

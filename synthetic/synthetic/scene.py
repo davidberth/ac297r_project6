@@ -1,12 +1,9 @@
-import header
-import camera
-import light
-import sphere
-
-
-def build_scene(template_path):
-    with open(template_path, "r") as f:
-        template = f.read()
+def build_scene(components, do_background=True):
+    template = ""
+    for comp, typ in components:
+        if typ == 0 or do_background:
+            with open(comp, "r") as f:
+                template += f.read()
 
     return template
 

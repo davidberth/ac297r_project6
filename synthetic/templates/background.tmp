@@ -1,0 +1,13 @@
+// Ground
+plane {
+  z, 0.55
+  texture {
+    background_texture
+    scale 0.3
+  }
+}
+
+global_settings{
+  post_process { PP_Depth(6.0, 9.2)
+  save_file depth_output }
+}

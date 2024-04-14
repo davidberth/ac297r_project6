@@ -1,0 +1,12 @@
+// Lights
+ light_source { <0, 10, -10> color rgb <light1, light1, light1> }
+ light_source { <5, 10, 5> color rgb <light2, light2, light2> }
+ light_source {
+    <light_x, light_y, -6.1>
+    color <light3, light3, light4>
+    spotlight
+    radius 2
+    falloff 20
+    tightness 13
+    point_at <0, 2, 0>
+  }

@@ -27,3 +27,18 @@ def apply_box(img_path: str, scale: float = 25):
 
     # Save the modified image
     image.save(img_path + ".png")
+
+
+def apply_mask(img_path: str, scale: float = 25):
+
+    imgp = img_path + ".png"
+    image = Image.open(imgp)
+    image = np.array(image)
+
+    mask = image[:, :, 0] // 3 + image[:, :, 1] // 3 + image[:, :, 2] // 3
+    image[mask > 0, :] = 255
+
+    image = Image.fromarray(image)
+
+    # Save the modified image
+    image.save(imgp)

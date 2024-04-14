@@ -1,0 +1,28 @@
+// mat
+box {
+   <-.5, -.5, -.5>, <.5, .5, .5>
+   scale <5.0, 5.5, 0.2>
+   translate <0.0, 1.5, 0.4>
+   rotate <0, mat_rotate_y, mat_rotate_z>
+
+ texture {
+    pigment {
+      image_map {
+        jpeg mat_tex
+        interpolate 2 // Smooth interpolation
+      }
+      scale 2
+    }
+     normal {
+    bump_map {
+      jpeg mat_tex // Use your bump map image file
+    }
+  }
+  finish {
+    diffuse 0.9
+    specular 0.4
+    reflection {0.3}
+  }
+
+  }
+}

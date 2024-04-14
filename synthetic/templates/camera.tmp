@@ -1,0 +1,6 @@
+// Camera setup
+camera {
+  location camera_location
+  look_at  <0, 1.3,  0>
+  angle 80
+}

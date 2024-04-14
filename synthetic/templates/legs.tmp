@@ -1,0 +1,81 @@
+// Right Leg (Cylinder) Shorts
+cylinder {
+  <0.3, 1.1, 0>, <0.3, 0.7, 0>, 0.23 // Base, cap, and radius
+  texture {
+    pigment { color shorts_color } // Shorts
+  }
+    normal {
+        bumps 0.5  // Alternatively, use 'granite' or 'bozo' for different effects
+        scale 0.1  // Adjust scale depending on the desired roughness
+    }
+}
+
+// Right Leg Skin
+cylinder {
+  <0.3, 0.7, 0>, right_leg_end, 0.20 // Base, cap, and radius
+  texture {
+    pigment { color skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+}
+
+ sphere {
+ right_leg_end, 0.18
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+ }
+
+
+// Left Leg (Cylinder) Shorts
+cylinder {
+  <-0.3, 1.1, 0>, <-0.35, 0.7, 0>, 0.23 // Base, cap, and radius
+  texture {
+    pigment { color shorts_color } // Skin color
+  }
+    normal {
+        bumps 0.5  // Alternatively, use 'granite' or 'bozo' for different effects
+        scale 0.1  // Adjust scale depending on the desired roughness
+    }
+}
+
+// Left Leg Skin
+cylinder {
+  <-0.35, 0.7, .2>, left_leg_end, 0.20 // Base, cap, and radius
+  texture {
+    pigment { color skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+}
+
+ sphere {
+ left_leg_end, 0.18
+texture {
+    pigment { color rgb skin_color } // Skin color
+  }
+   finish {
+  ambient 0.1
+  diffuse 0.65
+  specular 0.25
+  roughness 0.02
+  reflection {
+    0.05
+    fresnel 1
+  }}
+ }
