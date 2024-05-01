@@ -12,14 +12,25 @@ import os
 import numpy as np
 
 
-def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
-    """Render a scene of an infant or toddler on a mat
-    from multiple view angles, and then renders depth maps
+def render_children(
+    num_children: int,
+    start: int,
+    seed: int,
+    clear_dir: bool = False,
+    opams={},
+):
+    """Render an RGB scene of an infant or toddler on a mat
+    from multiple view angles, a depth map, and a segmentation map with
+    and without keypoints. The configuration file, config.toml, is used
+    to control random parameter spaces.
 
     Args:
         num_children (int): Number of children to render
+        start (int): the index to start at
         seed (int): The starting random seed to use for reproducibility
         clear_dir (bool): If true, clear the output directory before rendering
+        opams (dict): Optional parameters to control individual characteristics of the
+                         generated children and rendering process
     Returns:
     """
     output_path = constants.output_path
@@ -56,12 +67,12 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
     }
     }"""
 
-    for sn in range(num_children):
-
+    for tsn in range(num_children):
+        sn = tsn + start
         if seed >= 0:
             np.random.seed(seed)
             seed += 1
-        params = parameters.Parameters()
+        params = parameters.Parameters(params=opams)
 
         # generate the face texture
         face.render_face(
@@ -73,12 +84,8 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
         mat_texture = f'"textures/mat/461223{mat_index:03d}.jpg"'
 
         for frame, angle in enumerate(range(30, 151, 30)):
-            # for frame, angle in enumerate(
-            #    [
-            #        90,
-            #    ]
-            # ):
-            params_per = parameters.Parameters()
+
+            params_per = parameters.Parameters(params=opams)
             rang = np.deg2rad(float(angle + np.random.uniform(-3.0, 3.0)))
             for do_background in [True, False]:
                 scene_str = scene.build_scene(
@@ -141,7 +148,7 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
                 left_arm_loc += [
                     -np.cos(arm_ang_xy) * 1.5,
                     np.sin(arm_ang_xy) * 1.5,
-                    0.0,
+                    -0.4,
                 ]
                 scene_str = template.process_template(
                     scene_str, "left_arm_end", list(left_arm_loc)
@@ -175,7 +182,8 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
                 hair_str = ""
 
                 # add the hair
-                for i in range(np.random.randint(250, 4000)):
+
+                for i in range(int(params.hair_count)):
 
                     theta = np.random.uniform(
                         0, np.pi / 3
@@ -183,7 +191,7 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
                     phi = np.random.uniform(
                         0, 2 * np.pi
                     )  # Azimuthal angle, full range
-                    radius = np.random.uniform(0.10, 0.18) + params.head_size
+                    radius = params.hair_length + params.head_size
                     hair_width = np.random.normal(loc=0.016, scale=0.003)
                     # Convert spherical coordinates to Cartesian coordinates for plotting
                     x = radius * np.sin(theta) * np.cos(phi)
@@ -198,7 +206,7 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
                 scene.save_scene(scene_file, scene_str)
 
                 megapov = os.path.join(constants.megapov_path, "megapov")
-                opts = options.add(224, 224)
+                opts = options.add(opams["resx"], opams["resy"])
                 os.system(
                     f"{megapov} +I{scene_file} +O{output_file} +FN"
                     f" {opts} +L{constants.include_path}"
@@ -268,17 +276,64 @@ def render_scenes(num_children: int, seed: int, clear_dir: bool = False):
 
             # apply the postprocessing
             sf = f"output/child_{sl}_rgb_{angle}"
-            post_process.apply_noise(sf, np.random.uniform(0.0, 8.0))
+            post_process.apply_noise(sf, params.image_noise_level)
             # post_process.apply_box(sf)
-            # keypoint.apply_to_image(sf, 5)
+            # keypoint.apply_to_image(sf, 9)
             sf = f"output\child_{sl}_dpt_{angle}"
-            post_process.apply_noise(sf, np.random.uniform(0.0, 8.0))
+            post_process.apply_noise(sf, params.image_noise_level)
             # post_process.apply_box(sf)
-            # keypoint.apply_to_image(sf, 5)
+            # keypoint.apply_to_image(sf, 9)
             sf = f"output\child_{sl}_seg_{angle}"
-            # keypoint.apply_to_image(sf, 5)
+            # keypoint.apply_to_image(sf, 9)
             keypoint.keypoints = []
 
 
+import sys
+
+
+def parse_args_to_dict(args):
+    # initialize an empty dictionary
+    args_dict = {}
+    # iterate over args skipping the first one
+    i = 1
+    while i < len(args):
+        if args[i].startswith("--"):
+            # strip the '--' and use the next item as value
+            key = args[i][2:]
+            if i + 1 < len(args):
+                value = args[i + 1]
+                args_dict[key] = value
+                i += 2  # skip the next item
+            else:
+                # handle case where value is missing
+                raise ValueError(f"Value missing for option {args[i]}")
+
+        else:
+            # handle case where option does not start with '--'
+            raise ValueError(f"Invalid option format: {args[i]}")
+    return args_dict
+
+
 if __name__ == "__main__":
-    fire.Fire(render_scenes)
+    params = parse_args_to_dict(sys.argv)
+
+    if "num_children" not in params:
+        params["num_children"] = 1
+    if "start" not in params:
+        params["start"] = 0
+    if "seed" not in params:
+        params["seed"] = np.random.randint(0, 10000)
+    if "clear_dir" not in params:
+        params["clear_dir"] = False
+    if "resx" not in params:
+        params["resx"] = 512
+    if "resy" not in params:
+        params["resy"] = 512
+
+    render_children(
+        params["num_children"],
+        params["start"],
+        params["seed"],
+        clear_dir=params["clear_dir"],
+        opams=params,
+    )

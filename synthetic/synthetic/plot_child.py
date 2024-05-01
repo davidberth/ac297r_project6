@@ -10,13 +10,13 @@ def plot_child(child_number: int):
 
     # load the rgb images
     angles = range(30, 151, 30)
-    rgb_images = [base_path + f"rgb_{angle:03d}_kp.png" for angle in angles]
+    rgb_images = [base_path + f"rgb_{angle:03d}.png" for angle in angles]
     rgb_images = [np.array(Image.open(ig)) for ig in rgb_images]
 
-    dpt_images = [base_path + f"dpt_{angle:03d}_kp.png" for angle in angles]
+    dpt_images = [base_path + f"dpt_{angle:03d}.png" for angle in angles]
     dpt_images = [np.array(Image.open(ig)) for ig in dpt_images]
 
-    seg_images = [base_path + f"seg_{angle:03d}_kp.png" for angle in angles]
+    seg_images = [base_path + f"seg_{angle:03d}.png" for angle in angles]
     seg_images = [np.array(Image.open(ig)) for ig in seg_images]
 
     text_files = [base_path + f"lbl_{angle:03d}.txt" for angle in angles]

@@ -1,6 +1,6 @@
 // Right Arm (Cylinder)
 cylinder {
-  <0.45, 2.15, 0>, right_arm_end, 0.16 // Base, cap, and radius
+  <0.45, 2.05, 0>, right_arm_end, 0.16 // Base, cap, and radius
   texture {
     pigment { color rgb skin_color } // Skin color
   }
@@ -51,7 +51,7 @@ texture {
 
 // Left Arm (Cylinder)
 cylinder {
-  <-0.45, 2.15, 0>, left_arm_end, 0.16 // Base, cap, and radius
+  <-0.45, 2.05, 0>, left_arm_end, 0.16 // Base, cap, and radius
   texture {
     pigment { color rgb skin_color } // Skin color
   }
