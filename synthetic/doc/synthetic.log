@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.31)  1 MAY 2024 17:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.31)  2 MAY 2024 22:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -127,9 +127,9 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 55.
+(Font)              <7> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 55.
+(Font)              <5> on input line 54.
  [1
 
 {C:/Users/david.berthiaume/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (c:\miktex\tex/latex/listings\lstlang1.sty
@@ -139,51 +139,67 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 63.
+               Default added (so using `tbp') on input line 62.
 
-<plots/child_0.png, id=9, 1445.4pt x 794.97pt>
+<plots/child_0.png, id=9, 1445.4pt x 766.7847pt>
 File: plots/child_0.png Graphic file (type png)
 <use plots/child_0.png>
-Package pdftex.def Info: plots/child_0.png  used on input line 65.
-(pdftex.def)             Requested size: 345.0pt x 189.74136pt.
+Package pdftex.def Info: plots/child_0.png  used on input line 64.
+(pdftex.def)             Requested size: 345.0pt x 183.01416pt.
 [2 <./plots/child_0.png>]
 <plots/hand.png, id=17, 566.115pt x 843.15pt>
 File: plots/hand.png Graphic file (type png)
 <use plots/hand.png>
-Package pdftex.def Info: plots/hand.png  used on input line 79.
+Package pdftex.def Info: plots/hand.png  used on input line 78.
 (pdftex.def)             Requested size: 76.41359pt x 113.81102pt.
-<plots/child_000000_rgb_090.png, id=18, 225.84375pt x 279.29344pt>
-File: plots/child_000000_rgb_090.png Graphic file (type png)
-<use plots/child_000000_rgb_090.png>
-Package pdftex.def Info: plots/child_000000_rgb_090.png  used on input line 80.
+<plots/back.png, id=18, 225.84375pt x 279.29344pt>
+File: plots/back.png Graphic file (type png)
+<use plots/back.png>
+Package pdftex.def Info: plots/back.png  used on input line 79.
 (pdftex.def)             Requested size: 92.03137pt x 113.81102pt.
 <plots/foot.png, id=19, 120.0736pt x 166.74797pt>
 File: plots/foot.png Graphic file (type png)
 <use plots/foot.png>
-Package pdftex.def Info: plots/foot.png  used on input line 81.
+Package pdftex.def Info: plots/foot.png  used on input line 80.
 (pdftex.def)             Requested size: 81.95674pt x 113.81102pt.
- [3 <./plots/hand.png> <./plots/child_000000_rgb_090.png> <./plots/foot.png>] (synthetic.bbl
+ [3 <./plots/hand.png> <./plots/back.png> <./plots/foot.png>] [4]
+<plots/child_000000_rgb_060.png, id=32, 513.92pt x 513.92pt>
+File: plots/child_000000_rgb_060.png Graphic file (type png)
+<use plots/child_000000_rgb_060.png>
+Package pdftex.def Info: plots/child_000000_rgb_060.png  used on input line 148.
+(pdftex.def)             Requested size: 105.27585pt x 105.2751pt.
+<plots/child_000000_rgb_090.png, id=33, 513.92pt x 513.92pt>
+File: plots/child_000000_rgb_090.png Graphic file (type png)
+<use plots/child_000000_rgb_090.png>
+Package pdftex.def Info: plots/child_000000_rgb_090.png  used on input line 149.
+(pdftex.def)             Requested size: 105.27585pt x 105.2751pt.
+<plots/child_000000_rgb_120.png, id=34, 513.92pt x 513.92pt>
+File: plots/child_000000_rgb_120.png Graphic file (type png)
+<use plots/child_000000_rgb_120.png>
+Package pdftex.def Info: plots/child_000000_rgb_120.png  used on input line 150.
+(pdftex.def)             Requested size: 105.27585pt x 105.2751pt.
+ (synthetic.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [4] (synthetic.aux)
+) [5 <./plots/child_000000_rgb_060.png (PNG copy)> <./plots/child_000000_rgb_090.png (PNG copy)> <./plots/child_000000_rgb_120.png (PNG copy)>] (synthetic.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3596 strings out of 474486
- 51786 string characters out of 5760137
- 1944542 words of memory out of 5000000
- 25889 multiletter control sequences out of 15000+600000
- 562660 words of font info for 52 fonts, out of 8000000 for 9000
+ 3636 strings out of 474486
+ 52755 string characters out of 5760137
+ 1969542 words of memory out of 5000000
+ 25928 multiletter control sequences out of 15000+600000
+ 562995 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,1032b,1235s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/miktex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on synthetic.pdf (4 pages, 2651828 bytes).
+ <C:\Users\david.berthiaume\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><c:/miktex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/miktex/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on synthetic.pdf (5 pages, 3314991 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
+ 75 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
