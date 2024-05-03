@@ -63,7 +63,7 @@ def render_children(
     hair_strand = """cylinder {
     <0, head_height, 0>, $, @
     texture {
-    pigment { color rgb< haircolor1 , haircolor2 , haircolor3 > } // Skin color
+    pigment { color rgb< haircolor_red , haircolor_green , haircolor_blue > } 
     }
     }"""
 

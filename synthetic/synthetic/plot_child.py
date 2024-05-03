@@ -31,12 +31,14 @@ def plot_child(child_number: int):
                     data[tag.strip()] = value.strip()
         labels.append(data)
 
+    """
     plt.rcParams["axes.facecolor"] = "black"
     plt.rcParams["figure.facecolor"] = "black"
     plt.rcParams["text.color"] = "white"
     plt.rcParams["axes.labelcolor"] = "gray"
     plt.rcParams["xtick.color"] = "gray"
     plt.rcParams["ytick.color"] = "gray"
+    """
 
     fig, axs = plt.subplots(3, 5, figsize=(20, 11), sharey=True)
     # Set the axes background color
@@ -45,7 +47,7 @@ def plot_child(child_number: int):
         axs[0, i].imshow(rgb_images[i])
 
     for i in range(0, len(dpt_images)):
-        axs[1, i].imshow(dpt_images[i], cmap="hot")
+        axs[1, i].imshow(dpt_images[i][:, :, 0], cmap="ocean_r")
 
     for i in range(0, len(seg_images)):
         axs[2, i].imshow(seg_images[i], cmap="winter")
