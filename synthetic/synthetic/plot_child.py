@@ -4,7 +4,7 @@ from PIL import Image
 import fire
 
 
-def plot_child(child_number: int):
+def plot_child(child_number: int, show=False):
 
     base_path = f"output/child_{child_number:06d}_"
 
@@ -56,7 +56,10 @@ def plot_child(child_number: int):
         f"Child Seed: {labels[0]['seed']} - Height: {child_height:.4f} cm"
     )
     plt.tight_layout()
-    plt.savefig(f"plots/child_{child_number}.png")
+    if show:
+        plt.show()
+    else:
+        plt.savefig(f"plots/child_{child_number}.png")
 
 
 if __name__ == "__main__":

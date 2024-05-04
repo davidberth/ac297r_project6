@@ -272,5 +272,6 @@ rotate <0,-10, 60>
 scale 0.22
 translate left_arm_end
 }
-rotate <0, child_rotate_y, child_rotate_z>
+translate <child_shift_x, child_shift_y, child_shift_z>
+rotate <child_rotate_x, child_rotate_y, child_rotate_z>
 }

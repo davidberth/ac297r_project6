@@ -1,3 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{povray}
+{POV-Ray: Persistence of Vision Raytracer}.
+\newblock \url{https://www.povray.org/}.
+\newblock Accessed: 2024-05-03.
 
 \end{thebibliography}

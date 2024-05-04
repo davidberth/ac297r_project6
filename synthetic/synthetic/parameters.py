@@ -43,9 +43,13 @@ class Parameters:
             "mat_rotate_z": ("unif", -3.0, 3.0),
             "child_rotate_y": ("normal", 0.0, 6.0),
             "child_rotate_z": ("normal", 0.0, 6.0),
+            "child_rotate_x": ("normal", 0.0, 0.01),
             "hair_count": ("unif", 250, 4000),
             "hair_length": ("unif", 0.10, 0.18),
             "image_noise_level": ("unif", 0.0, 8.0),
+            "child_shift_x": ("unif", -0.05, 0.05),
+            "child_shift_y": ("unif", -0.05, 0.05),
+            "child_shift_z": ("unif", -0.05, 0.05),
         }
 
         if params is not None:

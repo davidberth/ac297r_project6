@@ -67,6 +67,7 @@ def render_children(
     }
     }"""
 
+    seed = int(seed)
     for tsn in range(num_children):
         sn = tsn + start
         if seed >= 0:
