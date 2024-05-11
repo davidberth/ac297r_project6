@@ -1,3 +1,4 @@
+# global constants for ChildSynth
 megapov_path = "c:/megapov/bin"
 include_path = "c:/povray/include/"
 

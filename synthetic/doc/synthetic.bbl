@@ -5,4 +5,35 @@
 \newblock \url{https://www.povray.org/}.
 \newblock Accessed: 2024-05-03.
 
+\bibitem{dosovitskiy2017carla}
+Alexey Dosovitskiy, German Ros, Felipe Codevilla, Antonio Lopez, and Vladlen
+  Koltun.
+\newblock Carla: An open urban driving simulator.
+\newblock In {\em Proceedings of the 1st Annual Conference on Robot Learning},
+  pages 1--16, 2017.
+
+\bibitem{openai2018dexterous}
+et~al. OpenAI.
+\newblock Learning dexterous in-hand manipulation.
+\newblock {\em ArXiv}, abs/1808.00177, 2018.
+
+\bibitem{perlin2001improving}
+Ken Perlin.
+\newblock Improving noise.
+\newblock In {\em Proceedings of the 28th annual conference on Computer
+  graphics and interactive techniques}, pages 681--682. ACM, 2001.
+
+\bibitem{100_seamless_textures}
+Open~Game Textures.
+\newblock 100 seamless textures.
+\newblock OpenGameArt.org, 2024.
+\newblock Public Domain. Available at:
+  \url{https://opengameart.org/content/100-seamless-textures}.
+
+\bibitem{pycairo}
+James Henstridge.
+\newblock Pycairo.
+\newblock Python package.
+\newblock Accessed: 2024-05-04.
+
 \end{thebibliography}

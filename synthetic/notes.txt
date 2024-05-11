@@ -28,3 +28,9 @@ cylinder
 /////
 
 pigment { color skin_color } // Skin color
+
+render_children . py -- child_rotate_x constant : -90 -- child_shift_z constant :0.9 -- child_shift_y constant :0.4 -- camera_distance constant :11
+
+
+
+good seed 621

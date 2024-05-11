@@ -10,6 +10,15 @@ keypoints = []
 
 
 def set_camera(camera, look_at):
+    """Set the camera position for the scene
+
+    Args:
+        camera (tuple): the position for the camera
+        look_at (tuple): the point at which the camera is looking
+
+    Returns:
+        None
+    """
     global kcamera_pos, klook_at
     kcamera_pos = camera
     klook_at = look_at

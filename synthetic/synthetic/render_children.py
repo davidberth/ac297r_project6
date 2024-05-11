@@ -96,7 +96,7 @@ def render_children(
                 camera_distance = params_per.camera_distance
                 camera_loc = [
                     np.cos(rang) * camera_distance,
-                    1.3,
+                    -0.2,
                     -np.sin(rang) * camera_distance,
                 ]
 
@@ -279,13 +279,13 @@ def render_children(
             sf = f"output/child_{sl}_rgb_{angle}"
             post_process.apply_noise(sf, params.image_noise_level)
             # post_process.apply_box(sf)
-            # keypoint.apply_to_image(sf, 9)
+            keypoint.apply_to_image(sf, 9)
             sf = f"output\child_{sl}_dpt_{angle}"
             post_process.apply_noise(sf, params.image_noise_level)
             # post_process.apply_box(sf)
-            # keypoint.apply_to_image(sf, 9)
+            keypoint.apply_to_image(sf, 9)
             sf = f"output\child_{sl}_seg_{angle}"
-            # keypoint.apply_to_image(sf, 9)
+            keypoint.apply_to_image(sf, 9)
             keypoint.keypoints = []
 
 
@@ -293,6 +293,22 @@ import sys
 
 
 def parse_args_to_dict(args):
+    """
+    Parses a list of command-line arguments into a dictionary.
+
+    Each argument is expected to be in the format of "--key value". This function skips the first argument,
+    typically the script name, and processes pairs of arguments as key-value pairs.
+
+    Args:
+        args (list of str): The list of command-line arguments.
+
+    Returns:
+        dict: A dictionary where each key is the argument name (without "--") and the value is the argument value.
+
+    Raises:
+        ValueError: If an option does not start with "--" or if a value is missing for any option.
+    """
+
     # initialize an empty dictionary
     args_dict = {}
     # iterate over args skipping the first one

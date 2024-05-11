@@ -3,6 +3,14 @@ from PIL import Image, ImageDraw
 
 
 def apply_noise(img_path: str, scale: float):
+    """
+    Applies Gaussian noise to an image and saves it.
+
+    Args:
+        img_path (str): The path to the image file without the extension.
+        scale (float): The standard deviation of the Gaussian noise.
+
+    """
 
     image = Image.open(img_path + ".png")
     image = np.array(image)
@@ -15,6 +23,14 @@ def apply_noise(img_path: str, scale: float):
 
 
 def apply_box(img_path: str, scale: float = 25):
+    """
+    Draws black boxes at random locations on an image and saves it.
+
+    Args:
+        img_path (str): The path to the image file without the extension.
+        scale (float): The size of the sides of the square boxes.
+
+    """
 
     image = Image.open(img_path + ".png")
     image = np.array(image)
@@ -30,7 +46,14 @@ def apply_box(img_path: str, scale: float = 25):
 
 
 def apply_mask(img_path: str, scale: float = 25):
+    """
+    Applies a mask to an image that sets pixels to white if any of their RGB values are non-zero, then saves it.
 
+    Args:
+        img_path (str): The path to the image file without the extension.
+        scale (float): Unused parameter, included for function signature consistency.
+
+    """
     imgp = img_path + ".png"
     image = Image.open(imgp)
     image = np.array(image)

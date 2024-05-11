@@ -7,7 +7,30 @@ import template
 
 
 class Parameters:
+    """
+    A class to manage and generate parameters for character rendering with customizable distributions.
+
+    Attributes:
+        All attributes are dynamically generated based on the provided parameter distributions.
+
+    Methods:
+        normal(mu, sigma): Generates a sample from a normal distribution.
+        bern(p): Generates a boolean value based on Bernoulli distribution.
+        unif(a, b): Generates a sample from a uniform distribution.
+        integer(a, b): Generates a random integer between a and b.
+        color(center, sigma): Generates a color value based on a normal distribution around a center color.
+        constant(value): Returns a constant value.
+        implement_templates(script): Replaces placeholders in a script with parameter values.
+        choose(choices): Randomly selects an item from a list of choices.
+    """
+
     def __init__(self, params=None):
+        """Initializes the Parameters object with default values or overrides them with provided params.
+
+        Args:
+            params (dict, optional): A dictionary of parameters to override the defaults. Defaults to None.
+        """
+
         # initialize with default values
         defaults = {
             "head_size": ("normal", 0.65, 0.05),
@@ -76,19 +99,68 @@ class Parameters:
         self.child_height = self.body_height + self.head_size * 1.75
 
     def normal(self, mu, sigma):
+        """
+        Generates a sample from a normal distribution.
+
+        Args:
+            mu (float): The mean of the distribution.
+            sigma (float): The standard deviation of the distribution.
+
+        Returns:
+            float: A random sample from the normal distribution.
+        """
         return randn() * sigma + mu
 
     def bern(self, p):
+        """
+        Generates a boolean value based on Bernoulli distribution.
+
+        Args:
+            p (float): Probability of returning True.
+
+        Returns:
+            bool: True with probability p, otherwise False.
+        """
         pc = np.random.random()
         return pc < p
 
     def unif(self, a, b):
+        """
+        Generates a sample from a uniform distribution.
+
+        Args:
+            a (float): Lower bound of the distribution.
+            b (float): Upper bound of the distribution.
+
+        Returns:
+            float: A random sample from the uniform distribution.
+        """
         return uniform(a, b)
 
     def integer(self, a, b):
+        """
+        Generates a random integer between a and b.
+
+        Args:
+            a (int): Lower bound of the distribution.
+            b (int): Upper bound of the distribution.
+
+        Returns:
+            int: A random integer between a and b.
+        """
         return np.random.randint(a, b)
 
     def color(self, center, sigma):
+        """
+        Generates a color value based on a normal distribution around a center color.
+
+        Args:
+            center (tuple): The center of the color distribution.
+            sigma (tuple): The standard deviation of the color distribution.
+
+        Returns:
+            np.ndarray: A color value as an array.
+        """
         cent = np.array(center)
         sig = np.array(sigma)
         col = randn(3) * sigma + cent
@@ -96,9 +168,28 @@ class Parameters:
         return col
 
     def constant(self, value):
+        """
+        Returns a constant value.
+
+        Args:
+            value: The value to return.
+
+        Returns:
+            The same value passed as argument.
+        """
+
         return value
 
     def implement_templates(self, script):
+        """
+        Replaces placeholders in a script with parameter values.
+
+        Args:
+            script (str): The script containing placeholders.
+
+        Returns:
+            str: The script with placeholders replaced by parameter values.
+        """
         params = self.__dict__
         for key, value in params.items():
             if isinstance(value, np.ndarray):
@@ -108,4 +199,13 @@ class Parameters:
         return script
 
     def choose(self, choices):
+        """
+        Randomly selects an item from a list of choices.
+
+        Args:
+            choices (list): A list of items to choose from.
+
+        Returns:
+            The selected item from the list.
+        """
         return np.random.choice(choices)

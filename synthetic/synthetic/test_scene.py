@@ -5,6 +5,11 @@ import options
 
 
 def test_scene():
+    """Ray traces a test scene for quick experiments
+
+    Returns:
+        none
+    """
     scene_file = "scenes/test.pov"
     output_file = "test/test.png"
     megapov = os.path.join(constants.megapov_path, "megapov")

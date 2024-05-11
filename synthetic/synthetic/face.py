@@ -1,12 +1,13 @@
 import cairo
 import fire
 
-# constants
+# face specific constants
 WIDTH, HEIGHT = 1024, 1024
 FACE_RADIUS = min(WIDTH, HEIGHT) / 6
 EYE_RADIUS = FACE_RADIUS / 6
 PUPIL_RADIUS = EYE_RADIUS * 0.75
 
+# available eye colors
 eye_colors_rgb = [
     (0.39, 0.26, 0.13),  # Dark Brown
     (0.58, 0.34, 0.10),  # Light Brown / Hazel
@@ -22,6 +23,16 @@ eye_colors_rgb = [
 
 
 def render_face(red, green, blue, eye_color_index, smile_factor):
+    """Renders a face dynamically onto a 2D texture
+
+    Args:
+        red (float): the red component for the skin
+        green (float): the green component for the skin
+        blue (float): the blue component for the skin
+        eye_color_index (int): the index of the eye color to use (see constants above)
+        smile_factor (float): a floating point number between -100 (full frown) and 100 (full smile)
+    """
+
     # setup cairo context
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, HEIGHT)
     ctx = cairo.Context(surface)
