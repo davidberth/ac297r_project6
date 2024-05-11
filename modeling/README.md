@@ -13,7 +13,7 @@ python render_children . py -- resy 512 -- resx 512 -- num_children 1
 -- output_dir ./ output
 ```
 
-![example_ragne](https://github.com/hiyuantang/modeling_pipeline/assets/24949723/386142b2-9bd3-4f99-9317-a9cd3f656)
+![example_ragne](https://github.com/davidbert/syntheic/assets/24949723/386142b2-9bd3-4f99-9317-a9cd3f656)
 ![mae_plot](https://github.com/hiyuantang/modeling_pipeline/assets/24949723/7e16b064-881b-4bcd-ab44-cae6f0844846)
 ![r2_plot](https://github.com/hiyuantang/modeling_pipeline/assets/24949723/9ba7a287-467d-490e-8fd3-6371ac29f1ab)
 ![train_loss_plot](https://github.com/hiyuantang/modeling_pipeline/assets/24949723/818ba8e7-7328-4866-9925-a7a0cdc07bc7)
